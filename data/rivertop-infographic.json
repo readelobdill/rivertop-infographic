@@ -1,0 +1,202 @@
+[
+{
+    "name":"oil-gas",
+    "text": "OIL & GAS",
+    "imports":[
+        "corrosion-inhibitor",
+        "descalant",
+        "acidizer",
+        "acidulant",
+        "metal-ion-control"
+    ]
+},
+{
+    "name":"industrial-institutional-cleaners",
+    "text": "INDUSTRIAL & INSTITUTIONAL CLEANERS",
+    "imports":[
+        "detergent-builder",
+        "anti-redeposition",
+        "descalant",
+        "metal-ion-control"
+    ]
+},
+{
+    "name":"concrete-additives",
+    "text": "CONCRETE ADDITIVES",
+    "imports":[
+        "corrosion-inhibitor",
+        "plasticizer",
+        "set-retarder",
+        "descalant",
+        "metal-ion-control"
+    ]
+},
+{
+    "name":"road-safety",
+    "text": "ROAD SAFETY",
+    "imports":[
+        "corrosion-inhibitor"
+    ]
+},
+{
+    "name":"water",
+    "text": "WATER",
+    "imports":[
+        "descalant",
+        "metal-ion-control"
+    ]
+},
+{
+    "name":"agriculture",
+    "text": "AGRICULTURE",
+    "imports":[
+        "controlled-delivery",
+        "metal-ion-control"
+    ]
+},
+{
+    "name":"pulp-paper",
+    "text": "PULP & PAPER",
+    "imports":[
+        "descalant"
+    ]
+},
+{
+    "name":"personal-care",
+    "text": "PERSONAL CARE",
+    "imports":[
+        "antioxidant"
+    ]
+},
+{
+    "name":"pharmaceutical",
+    "text": "PHARMACEUTICAL",
+    "imports":[
+        "controlled-delivery"
+    ]
+},
+{
+    "name":"food-nutrition",
+    "text": "FOOD & NUTRITION",
+    "imports":[
+        "antioxidant",
+        "acidulant",
+        "metal-ion-control"
+    ]
+},
+{
+    "name":"fabric-homecare",
+    "text": "FABRIC & HOMECARE",
+    "imports":[
+        "corrosion-inhibitor",
+        "detergent-builder",
+        "anti-redeposition",
+        "agent-structurant",
+        "descalant"
+    ]
+},
+
+
+{
+    "name":"metal-ion-control",
+    "text": "METAL ION CONTROL",
+    "imports":[
+        "fabric-homecare",
+        "food-nutrition",
+        "agriculture",
+        "concrete-additives",
+        "water",
+        "industrial-institutional-cleaners",
+        "oil-gas"
+    ]
+},
+{
+    "name":"acidulant",
+    "text": "ACIDULANT",
+    "imports":[
+        "food-nutrition",
+        "oil-gas"
+    ]
+},
+{
+    "name":"acidizer",
+    "text": "ACIDIZER",
+    "imports":[
+        "oil-gas"
+    ]
+},
+{
+    "name":"descalant",
+    "text": "DESCALANT ANIT-SCALANT",
+    "imports":[
+        "fabric-homecare",
+        "pulp-paper",
+        "water",
+        "industrial-institutional-cleaners",
+        "oil-gas"
+    ]
+},
+{
+    "name":"agent-structurant",
+    "text": "AGENT STRUCTURANT",
+    "imports":[
+        "fabric-homecare"
+    ]
+},
+{
+    "name":"anti-redeposition",
+    "text": "ANTI-REDEPOSITION",
+    "imports":[
+        "fabric-homecare",
+        "industrial-institutional-cleaners"
+    ]
+},
+{
+    "name":"antioxidant",
+    "text": "ANTIOXIDANT",
+    "imports":[
+        "food-nutrition",
+        "personal-care"
+    ]
+},
+{
+    "name":"controlled-delivery",
+    "text": "CONTROLLED DELIVERY",
+    "imports":[
+        "agriculture",
+        "pharmaceutical"
+    ]
+},
+{
+    "name":"set-retarder",
+    "text": "SET RETARDER",
+    "imports":[
+        "concrete-additives"
+    ]
+},
+{
+    "name":"plasticizer",
+    "text": "PLASTICIZER",
+    "imports":[
+        "concrete-additives"
+    ]
+},
+{
+    "name":"detergent-builder",
+    "text": "DETERGENT BUILDER",
+    "imports":[
+        "industrial-institutional-cleaners",
+        "fabric-homecare"
+    ]
+},
+{
+    "name":"corrosion-inhibitor",
+    "text": "CORROSIOIN INHIBITOR",
+    "imports":[
+        "oil-gas",
+        "concrete-additives",
+        "road-safety",
+        "fabric-homecare"
+    ]
+}
+]

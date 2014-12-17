@@ -1,0 +1,31 @@
+.node {
+  font: 300 18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  fill: #bbb;
+}
+
+.node:hover {
+  fill: #000;
+}
+
+.link {
+  stroke: steelblue;
+  stroke-opacity: .4;
+  stroke-width: 2px;
+  fill: none;
+  pointer-events: none;
+}
+
+.node:hover,
+.node--source,
+.node--target {
+  cursor: pointer;
+}
+
+.link--source,
+.link--target {
+  stroke-opacity: 1;
+}
+
+.not-connected{
+  stroke-opacity: 0;
+}
