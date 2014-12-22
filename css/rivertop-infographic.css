@@ -1,21 +1,49 @@
-.node {
-  font: 300 18px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  fill: #bbb;
+#technology-infomap{
+  width: 90%;
+  max-width: 1126px;
+  margin: 0 auto;
+}
+.node-text{
+  font: 11.5px rajdhani-regular, Helvetica, Arial, sans-serif;
+  color: #FFFFFF;
+  text-align: center;
+  pointer-events:none;
+  line-height: 40px;
 }
 
-.node:hover {
-  fill: #000;
+.section-text{
+  font: 11px rajdhani-bold, Helvetica, Arial, sans-serif;
+  fill: #A6A8AB;
+  pointer-events:none;
+}
+
+.node-text span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;      
+}
+
+.node-shape.blue{
+  fill: #002857;
+}
+
+.node-shape.grey{
+  fill: #939393;
+}
+
+.node-shape:hover {
+  fill: #FF6B0B;
 }
 
 .link {
-  stroke: steelblue;
+  stroke: #929497;
   stroke-opacity: .4;
-  stroke-width: 2px;
+  stroke-width: 1px;
   fill: none;
   pointer-events: none;
 }
 
-.node:hover,
+.node-shape:hover,
 .node--source,
 .node--target {
   cursor: pointer;
@@ -28,4 +56,26 @@
 
 .not-connected{
   stroke-opacity: 0;
+}
+
+.chelation{fill:#9B7D5C;}
+.ph-modification{fill:#FF6C0C;}
+.dispertion{fill:#2FCF29;}
+.absorption{fill:#0099CD;}
+.barrier{fill:#9FA1A4;}
+.adhesion{fill:#454545;}
+.permeation{fill:#D6BDA0;}
+.flavor-modification{fill:#002857;}
+.preservation{fill:#D9CA00;}
+
+@font-face
+{
+  font-family: rajdhani-regular;
+  src: url('../fonts/Rajdhani-Regular.ttf');
+}
+
+@font-face
+{
+  font-family: rajdhani-bold;
+  src: url('../fonts/Rajdhani-Bold.ttf');
 }

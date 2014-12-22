@@ -2,6 +2,7 @@
 {
     "name":"oil-gas",
     "text": "OIL & GAS",
+    "background": "blue",
     "imports":[
         "corrosion-inhibitor",
         "descalant",
@@ -13,6 +14,7 @@
 {
     "name":"industrial-institutional-cleaners",
     "text": "INDUSTRIAL & INSTITUTIONAL CLEANERS",
+    "background": "blue",
     "imports":[
         "detergent-builder",
         "anti-redeposition",
@@ -23,6 +25,7 @@
 {
     "name":"concrete-additives",
     "text": "CONCRETE ADDITIVES",
+    "background": "blue",
     "imports":[
         "corrosion-inhibitor",
         "plasticizer",
@@ -34,6 +37,7 @@
 {
     "name":"road-safety",
     "text": "ROAD SAFETY",
+    "background": "blue",
     "imports":[
         "corrosion-inhibitor"
     ]
@@ -41,6 +45,7 @@
 {
     "name":"water",
     "text": "WATER",
+    "background": "blue",
     "imports":[
         "descalant",
         "metal-ion-control"
@@ -49,6 +54,7 @@
 {
     "name":"agriculture",
     "text": "AGRICULTURE",
+    "background": "blue",
     "imports":[
         "controlled-delivery",
         "metal-ion-control"
@@ -57,6 +63,7 @@
 {
     "name":"pulp-paper",
     "text": "PULP & PAPER",
+    "background": "blue",
     "imports":[
         "descalant"
     ]
@@ -64,6 +71,7 @@
 {
     "name":"personal-care",
     "text": "PERSONAL CARE",
+    "background": "blue",
     "imports":[
         "antioxidant"
     ]
@@ -71,6 +79,7 @@
 {
     "name":"pharmaceutical",
     "text": "PHARMACEUTICAL",
+    "background": "blue",
     "imports":[
         "controlled-delivery"
     ]
@@ -78,6 +87,7 @@
 {
     "name":"food-nutrition",
     "text": "FOOD & NUTRITION",
+    "background": "blue",
     "imports":[
         "antioxidant",
         "acidulant",
@@ -87,6 +97,7 @@
 {
     "name":"fabric-homecare",
     "text": "FABRIC & HOMECARE",
+    "background": "blue",
     "imports":[
         "corrosion-inhibitor",
         "detergent-builder",
@@ -100,6 +111,7 @@
 {
     "name":"metal-ion-control",
     "text": "METAL ION CONTROL",
+    "background": "grey",
     "imports":[
         "fabric-homecare",
         "food-nutrition",
@@ -108,95 +120,157 @@
         "water",
         "industrial-institutional-cleaners",
         "oil-gas"
+    ],
+    "functionality":[
+        "preservation",
+        "dispertion",
+        "chelation"
     ]
 },
 {
     "name":"acidulant",
     "text": "ACIDULANT",
+    "background": "grey",
     "imports":[
         "food-nutrition",
         "oil-gas"
+    ],
+    "functionality":[
+        "flavor-modification",
+        "ph-modification"
     ]
 },
 {
     "name":"acidizer",
     "text": "ACIDIZER",
+    "background": "grey",
     "imports":[
         "oil-gas"
+    ],
+    "functionality":[
+        "ph-modification",
+        "chelation"
     ]
 },
 {
     "name":"descalant",
     "text": "DESCALANT ANIT-SCALANT",
+    "background": "grey",
     "imports":[
         "fabric-homecare",
         "pulp-paper",
         "water",
         "industrial-institutional-cleaners",
         "oil-gas"
+    ],
+    "functionality":[
+        "dispertion",
+        "ph-modification",
+        "chelation"
     ]
 },
 {
     "name":"agent-structurant",
     "text": "AGENT STRUCTURANT",
+    "background": "grey",
     "imports":[
         "fabric-homecare"
+    ],
+    "functionality":[
+        "absorption",
+        "adhesion",
+        "dispertion"
     ]
 },
 {
     "name":"anti-redeposition",
     "text": "ANTI-REDEPOSITION",
+    "background": "grey",
     "imports":[
         "fabric-homecare",
         "industrial-institutional-cleaners"
+    ],
+    "functionality":[
+        "absorption",
+        "dispertion"
     ]
 },
 {
     "name":"antioxidant",
     "text": "ANTIOXIDANT",
+    "background": "grey",
     "imports":[
         "food-nutrition",
         "personal-care"
+    ],
+    "functionality":[
+        "preservation"
     ]
 },
 {
     "name":"controlled-delivery",
     "text": "CONTROLLED DELIVERY",
+    "background": "grey",
     "imports":[
         "agriculture",
         "pharmaceutical"
+    ],
+    "functionality":[
+        "permeation",
+        "barrier"
     ]
 },
 {
     "name":"set-retarder",
     "text": "SET RETARDER",
+    "background": "grey",
     "imports":[
         "concrete-additives"
+    ],
+    "functionality":[
+        "chelation"
     ]
 },
 {
     "name":"plasticizer",
     "text": "PLASTICIZER",
+    "background": "grey",
     "imports":[
         "concrete-additives"
+    ],
+    "functionality":[
+        "dispertion"
     ]
 },
 {
     "name":"detergent-builder",
     "text": "DETERGENT BUILDER",
+    "background": "grey",
     "imports":[
         "industrial-institutional-cleaners",
         "fabric-homecare"
+    ],
+    "functionality":[
+        "dispertion",
+        "ph-modification",
+        "chelation"
     ]
 },
 {
     "name":"corrosion-inhibitor",
     "text": "CORROSIOIN INHIBITOR",
+    "background": "grey",
     "imports":[
         "oil-gas",
         "concrete-additives",
         "road-safety",
         "fabric-homecare"
+    ],
+    "functionality":[
+        "barrier",
+        "preservation",
+        "absorption",
+        "chelation"
     ]
 }
 ]
