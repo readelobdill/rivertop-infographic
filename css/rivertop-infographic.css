@@ -79,15 +79,15 @@
   stroke-opacity: 0;
 }
 
-.chelation{fill:#9B7D5C;}
-.ph-modification{fill:#FF6C0C;}
-.dispertion{fill:#2FCF29;}
-.absorption{fill:#0099CD;}
-.barrier{fill:#9FA1A4;}
-.adhesion{fill:#454545;}
-.permeation{fill:#D6BDA0;}
-.flavor-modification{fill:#002857;}
-.preservation{fill:#D9CA00;}
+.chelation{fill:#9B7D5C !important;}
+.ph-modification{fill:#FF6C0C !important;}
+.dispertion{fill:#2FCF29 !important;}
+.absorption{fill:#0099CD !important;}
+.barrier{fill:#9FA1A4 !important;}
+.adhesion{fill:#454545 !important;}
+.permeation{fill:#D6BDA0 !important;}
+.flavor-modification{fill:#002857 !important;}
+.preservation{fill:#D9CA00 !important;}
 
 @font-face
 {

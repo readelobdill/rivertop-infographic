@@ -260,10 +260,13 @@ $(document).ready(function(){
         });
         activateNode(nodeList)
 
+        d3.selectAll('.node-source path').classed(d.name, true);
         $('.circle-marker:not(.' + d.name + ')').hide();
     }
 
     function mouseoutTile(d){
+        d3.selectAll('.node-source path').classed(d.name, false);
+
        _.forEach(d.connectedTiles, function(connectedTile){
             var node = d3.select('.' + connectedTile);
             deactivateNode(node.data()[0]);
