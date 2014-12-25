@@ -126,7 +126,9 @@ $(document).ready(function(){
                     'corrosion-inhibitor',
                     'detergent-builder',
                     'set-retarder',
-                    'metal-ion-control'
+                    'metal-ion-control',
+                    'acidizer',
+                    'descalant'
                 ]
             },
             {
@@ -148,6 +150,8 @@ $(document).ready(function(){
                     'anti-redeposition',
                     'agent-structurant',
                     'descalant',
+                    'plasticizer',
+                    'detergent-builder',
                     'metal-ion-control'
                 ]
             },
