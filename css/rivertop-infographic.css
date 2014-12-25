@@ -1,12 +1,14 @@
 #technology-infomap{
   width: 90%;
   max-width: 1126px;
+  min-width: 700px;
   margin: 0 auto;
 }
 .node-text{
-  font: 11.5px rajdhani-regular, Helvetica, Arial, sans-serif;
+  font: 10.8px rajdhani-regular, Helvetica, Arial, sans-serif;
   color: #FFFFFF;
   text-align: center;
+  font-weight: bold;
   pointer-events:none;
   line-height: 40px;
 }
@@ -14,6 +16,27 @@
 .section-text{
   font: 11px rajdhani-bold, Helvetica, Arial, sans-serif;
   fill: #A6A8AB;
+  pointer-events:none;
+}
+
+.functionality-title{
+  font: 11px rajdhani-bold, Helvetica, Arial, sans-serif;
+  fill: #A6A8AB;
+  letter-spacing: 2px;
+  text-anchor: middle;
+  pointer-events:none;
+}
+
+.tile-group{
+  cursor: pointer;
+}
+
+.tile-text{
+  font: 10px rajdhani-regular, Helvetica, Arial, sans-serif;
+  fill: #FFFFFF;
+  font-weight: bold;
+  letter-spacing: .2px;
+  text-anchor: middle;
   pointer-events:none;
 }
 
@@ -31,10 +54,6 @@
   fill: #939393;
 }
 
-.node-shape:hover {
-  fill: #FF6B0B;
-}
-
 .link {
   stroke: #929497;
   stroke-opacity: .4;
@@ -43,14 +62,16 @@
   pointer-events: none;
 }
 
-.node-shape:hover,
-.node--source,
-.node--target {
+.functionality-line{
+  stroke-width: 1px;
+  stroke: #A6A8AB;
+}
+.node-source .node-shape{
+  fill: #FF6B0B;
   cursor: pointer;
 }
 
-.link--source,
-.link--target {
+.link-source{
   stroke-opacity: 1;
 }
 

@@ -78,7 +78,7 @@
 },
 {
     "name":"pharmaceutical",
-    "text": "PHARMACEUTICAL",
+    "text": "PHARMA-CEUTICAL",
     "background": "blue",
     "imports":[
         "controlled-delivery"
