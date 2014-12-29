@@ -3,24 +3,28 @@
   max-width: 1126px;
   min-width: 700px;
   margin: 0 auto;
+
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale;
 }
+
 .node-text{
-  font: 10.8px rajdhani-regular, Helvetica, Arial, sans-serif;
+  font: 12.6px rajdhani-bold, Helvetica, Arial, sans-serif;
   color: #FFFFFF;
   text-align: center;
-  font-weight: bold;
   pointer-events:none;
   line-height: 40px;
 }
 
 .section-text{
-  font: 11px rajdhani-bold, Helvetica, Arial, sans-serif;
+  font: 11.5px rajdhani-bold, Helvetica, Arial, sans-serif;
   fill: #A6A8AB;
   pointer-events:none;
 }
 
 .functionality-title{
-  font: 11px rajdhani-bold, Helvetica, Arial, sans-serif;
+  font: 11.5px rajdhani-bold, Helvetica, Arial, sans-serif;
   fill: #A6A8AB;
   letter-spacing: 2.5px;
   text-anchor: middle;
@@ -32,25 +36,24 @@
 }
 
 .tile-text{
-  font: 7.3pt rajdhani-regular, Helvetica, Arial, sans-serif;
+  font: 11.5px rajdhani-bold, Helvetica, Arial, sans-serif;
   fill: #FFFFFF;
   letter-spacing: 0px;
-  font-weight: 900;
   text-anchor: middle;
   pointer-events:none;
 }
 .node-text.flip{
-  -webkit-transform: rotate(278deg) translate(-82.5px, -47.5px);
-  -moz-transform:    rotate(278deg) translate(-82.5px, -47.5px);
-  -ms-transform:     rotate(278deg) translate(-82.5px, -47.5px);
-   transform:        rotate(278deg) translate(-82.5px, -47.5px);
+  -webkit-transform: rotate(278deg) translate(-83.5px, -48.5px);
+  -moz-transform:    rotate(278deg) translate(-83.5px, -48.5px);
+  -ms-transform:     rotate(278deg) translate(-83.5px, -48.5px);
+   transform:        rotate(278deg) translate(-83.5px, -48.5px);
 }
 
 .node-text.no-flip{
-  -webkit-transform: rotate(97deg) translate(9px, 10px);
-  -moz-transform:    rotate(97deg) translate(9px, 10px);
-  -ms-transform:     rotate(97deg) translate(9px, 10px);
-   transform:        rotate(97deg) translate(9px, 10px);
+  -webkit-transform: rotate(97deg) translate(9px, 7px);
+  -moz-transform:    rotate(97deg) translate(9px, 7px);
+  -ms-transform:     rotate(97deg) translate(9px, 7px);
+   transform:        rotate(97deg) translate(9px, 7px);
 }
 
 .node-text span {
@@ -102,18 +105,6 @@
 .permeation{fill:#D6BDA0 !important;}
 .flavor-modification{fill:#600074 !important;}
 .preservation{fill:#D9CA00 !important;}
-
-@font-face
-{
-  font-family: rajdhani-regular;
-  src: url('../fonts/Rajdhani-Regular.ttf');
-}
-
-@font-face
-{
-  font-family: rajdhani-semiBold;
-  src: url('../fonts/Rajdhani-SemiBold.ttf');
-}
 
 @font-face
 {

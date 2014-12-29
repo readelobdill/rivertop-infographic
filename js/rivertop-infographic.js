@@ -10,7 +10,7 @@ $(document).ready(function(){
 
     var line = d3.svg.line.radial()
             .interpolate("bundle")
-            .tension(.15)
+            .tension(.2)
             .radius(function(d) { return d.y; })
             .angle(function(d) { return d.x / 180 * Math.PI; });
 
@@ -20,19 +20,49 @@ $(document).ready(function(){
             .attr("viewBox", -radius + " " + -radius + " 850 1000")
             .attr("preserveAspectRatio", "xMinYMin meet");
 
-        svg.append('defs')
-            .append('marker')
-            .attr('id', 'section-bookend')
-            .attr("markerWidth","2")
-            .attr("markerHeight","12")
-            // .attr('refx', 5)
-            // .attr('refy', 5)
-            .append('line')
-            .attr('x1', 0)
-            .attr('y1', 0)
-            .attr('x2', 0)
-            .attr('y2', 50)
-            .attr('style', 'stroke:#A6A8AB; stroke-width:3');
+        var defs = svg.append('defs');
+            
+            defs.append('marker')
+                .attr('id', 'section-bookend')
+                .attr("viewBox", "0 0 1 10")
+                .attr('markerUnits', 'strokeWidth')
+                .attr('markerHeight', '13')
+                .attr('refY', 0.5)
+                .attr('orient', 'auto')
+                .append('line')
+                .attr('x1', 0)
+                .attr('y1', 0)
+                .attr('x2', 0)
+                .attr('y2', 10)
+                .attr('style', 'stroke:#A6A8AB;');
+
+            defs.append('marker')
+                .attr('id', 'functionality-bookend')
+                .attr("viewBox", "0 0 1 10")
+                .attr('markerUnits', 'strokeWidth')
+                .attr('markerHeight', '10')
+                .attr('refY', 0.5)
+                .attr('orient', 'auto')
+                .append('line')
+                .attr('x1', 0)
+                .attr('y1', 0)
+                .attr('x2', 0)
+                .attr('y2', 10)
+                .attr('style', 'stroke:#A6A8AB;');
+
+            defs.append('marker')
+                .attr('id', 'section-bookend-flip')
+                .attr("viewBox", "0 0 1 10")
+                .attr('markerUnits', 'strokeWidth')
+                .attr('markerHeight', '13')
+                .attr('refY', 9.5)
+                .attr('orient', 'auto')
+                .append('line')
+                .attr('x1', 0)
+                .attr('y1', 0)
+                .attr('x2', 0)
+                .attr('y2', 10)
+                .attr('style', 'stroke:#A6A8AB;');
 
     var link = svg.append("g").attr("transform", "rotate(273)").selectAll(".link"),
         node = svg.append("g").attr("transform", "rotate(273)").selectAll(".node"),
@@ -67,7 +97,8 @@ $(document).ready(function(){
                 .attr("class", function(d){ return 'node-text ' + (d.x >= 180 ? 'flip': 'no-flip'); })
                 .attr('height', '45')
                 .attr('width', '75')
-                .html(function(d) { return '<span>' + d.text + '</span>'; });
+                .append('xhtml:span')
+                .html(function(d) { return d.text; });
 
         node.each(function(d){
             if(d.functionality){
@@ -84,25 +115,46 @@ $(document).ready(function(){
         });
 
         var arcSpecs = [
-            {startAngle: 23.5, endAngle: 84.5, id: "consumer-markets", text: "CONSUMER MARKETS", textOffset: 135, letterSpacing: 100, dy: "1.5em"},
-            {startAngle: 272.5, endAngle: 86, id: "applications", text: "APPLICATIONS", textOffset: 582, letterSpacing: 50, dy: "-0.75em"},
-            {startAngle: 274, endAngle: 382, id: "industrial-markets", text: "INDUSTRIAL MARKETS", textOffset: 300, letterSpacing: 100, dy: "1.5em"}
+            {
+                id: "consumer-markets",
+                text: "CONSUMER MARKETS",
+                textOffset: 135,
+                letterSpacing: 100,
+                dy: "1.5em",
+                d: "M153.95010398986426,-358.3285719580703A390,390 0 0,1 388.3639217541181,-35.68563127872696",
+                markerName: "section-bookend"
+            },
+            {
+                id: "applications",
+                text: "APPLICATIONS",
+                textOffset: 587,
+                letterSpacing: 50,
+                dy: "-0.75em",
+                d: "M-389.55087072913074,-18.711470123323966A390,390 0 1,0 389.0499796013315,-27.20502476020882",
+                markerName: 'section-bookend-flip'
+            },
+            {
+                id: "industrial-markets", 
+                text: "INDUSTRIAL MARKETS", 
+                textOffset: 300, 
+                letterSpacing: 100,
+                dy: "1.5em", 
+                d: "M-389.16498006305534,-25.50722039975589A390,390 0 0,1 146.09657143220568,-361.6017032810471",
+                markerName: 'section-bookend'
+            }
         ];
 
         _.forEach(arcSpecs, function(arcSpec){
-            var arc = d3.svg.arc()
-                .innerRadius(radius - 35)
-                .outerRadius(radius - 36)
-                .startAngle(arcSpec.startAngle * (Math.PI/180)) //converting from degs to radians
-                .endAngle(arcSpec.endAngle * (Math.PI/180));
-
             svg.append("path")
-                .attr('fill', '#A6A8AB')
+                .attr('stroke-width', '1')
+                .attr('stroke', '#A6A8AB')
+                .attr('fill', 'none')
                 .attr('id', arcSpec.id)
-                .attr("d", arc)
+                .attr("d", arcSpec.d)
 
-                // .attr('marker-end', 'url(#section-bookend)')
-                // .attr('marker-start', 'url(#section-bookend)');
+
+                .attr('marker-start', 'url(#' + arcSpec.markerName + ')')
+                .attr('marker-end', 'url(#' + arcSpec.markerName + ')');
 
             svg.append("text")
               .attr('class', 'section-text')
@@ -233,7 +285,7 @@ $(document).ready(function(){
                 
             tile.insert('text')
                 .attr('class', 'tile-text')
-                .attr("dy", "1.35em")
+                .attr("dy", "1.2em")
                 .attr('x', 60)
                 .text(function(d){return d.text;});
 
@@ -244,12 +296,12 @@ $(document).ready(function(){
                 .attr("y1", -15)
                 .attr("x2", 655)
                 .attr("y2", -15)
-                // .attr('marker-end', 'url(#section-bookend)')
-                // .attr('marker-start', 'url(#section-bookend)');
+                .attr('marker-end', 'url(#functionality-bookend)')
+                .attr('marker-start', 'url(#functionality-bookend)');
 
             svg.select('.tile-container').append('text')
                 .attr('class', 'functionality-title')
-                .attr('dy', '-2.1em')
+                .attr('dy', '-2em')
                 .attr('x', 625/2)
                 .text('FUNCTIONALITY');
 
