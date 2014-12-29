@@ -36,7 +36,7 @@ $(document).ready(function(){
 
     var link = svg.append("g").attr("transform", "rotate(273)").selectAll(".link"),
         node = svg.append("g").attr("transform", "rotate(273)").selectAll(".node"),
-        tile = svg.append("g").attr('class', 'tile-continer').attr("transform", "translate(" + -625/2 + "," + (radius + 75) + ")").selectAll(".tile");
+        tile = svg.append("g").attr('class', 'tile-container').attr("transform", "translate(" + -625/2 + "," + (radius + 75) + ")").selectAll(".tile");
 
     d3.json("data/rivertop-infographic.json", function(error, classes) {
         var nodes = cluster.nodes(packageHierarchy(classes)),
@@ -54,21 +54,20 @@ $(document).ready(function(){
                 .enter().append("g")
                 .attr("class", function(d) { return "node-group " + d.name; })
                 .attr("transform", function(d) { return "rotate(" + (d.x - 97) + ")translate(" + (d.y + 63) + ",0)"; })
-                .on("mouseover", activateNode)
-                .on("mouseout", deactivateNode);
+                
 
         node.insert('path')
                 .attr("d","M84.276,61.439l8.281-58.25C76.556,1.044,61.212,0,45.75,0C30.64,0,15.641,0.997,0,3.043l8.094,58.253 C33,58.091,58.574,58.031,84.276,61.439z")
                 .attr("class", function(d) { return "node-shape " + d.background; })
-                .attr("transform", "rotate(97)scale(1)");
+                .attr("transform", "rotate(97)scale(1)")
+                .on("mouseover", activateNode)
+                .on("mouseout", deactivateNode);
 
         node.insert("foreignObject")
-                .attr("transform", function(d){ return d.x >= 180 ? "rotate(278)translate(-82.5, -47.5)" :  "rotate(97)translate(9, 10)"; })
+                .attr("class", function(d){ return 'node-text ' + (d.x >= 180 ? 'flip': 'no-flip'); })
                 .attr('height', '45')
                 .attr('width', '75')
-                .append("xhtml:p")
-                .attr("class", "node-text")
-                .html(function(d) { return "<span>" + d.text + "</span"; });
+                .html(function(d) { return '<span>' + d.text + '</span>'; });
 
         node.each(function(d){
             if(d.functionality){
@@ -238,7 +237,7 @@ $(document).ready(function(){
                 .attr('x', 60)
                 .text(function(d){return d.text;});
 
-            svg.select('.tile-continer')
+            svg.select('.tile-container')
                 .append('line')
                 .attr('class', 'functionality-line')
                 .attr("x1", -30)
@@ -248,7 +247,7 @@ $(document).ready(function(){
                 // .attr('marker-end', 'url(#section-bookend)')
                 // .attr('marker-start', 'url(#section-bookend)');
 
-            svg.select('.tile-continer').append('text')
+            svg.select('.tile-container').append('text')
                 .attr('class', 'functionality-title')
                 .attr('dy', '-2.1em')
                 .attr('x', 625/2)
@@ -268,7 +267,7 @@ $(document).ready(function(){
         $('.circle-marker:not(.' + d.name + ')').hide();
     }
 
-    function mouseoutTile(d){
+    var mouseoutTile = function(d){
         d3.selectAll('.node-source path').classed(d.name, false);
 
        _.forEach(d.connectedTiles, function(connectedTile){
@@ -279,7 +278,7 @@ $(document).ready(function(){
         $('.circle-marker').show();
     }
 
-    function activateNode(d) {
+    var activateNode = function(d) {
         if(!_.isArray(d)){
             d = [d];
         }

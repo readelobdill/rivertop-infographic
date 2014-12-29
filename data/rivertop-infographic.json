@@ -184,7 +184,7 @@
 },
 {
     "name":"anti-redeposition",
-    "text": "ANTI-REDEPOSITION",
+    "text": "ANTI- REDEPOSITION",
     "background": "grey",
     "imports":[
         "fabric-homecare",
