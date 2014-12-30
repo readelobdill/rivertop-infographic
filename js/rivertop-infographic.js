@@ -2,7 +2,7 @@
     var classes = [
         {
             "name":"oil-gas",
-            "text": "OIL & GAS",
+            "text": ["OIL & GAS"],
             "background": "blue",
             "imports":[
                 "corrosion-inhibitor",
@@ -14,7 +14,7 @@
         },
         {
             "name":"industrial-institutional-cleaners",
-            "text": "INDUSTRIAL & INSTITUTIONAL CLEANERS",
+            "text": ["INDUSTRIAL &", "INSTITUTIONAL", "CLEANERS"],
             "background": "blue",
             "imports":[
                 "detergent-builder",
@@ -25,7 +25,7 @@
         },
         {
             "name":"concrete-additives",
-            "text": "CONCRETE ADDITIVES",
+            "text": ["CONCRETE", "ADDITIVES"],
             "background": "blue",
             "imports":[
                 "corrosion-inhibitor",
@@ -37,7 +37,7 @@
         },
         {
             "name":"road-safety",
-            "text": "&nbsp;ROAD &nbsp;SAFETY",
+            "text": ["ROAD", "SAFETY"],
             "background": "blue",
             "imports":[
                 "corrosion-inhibitor"
@@ -45,7 +45,7 @@
         },
         {
             "name":"water",
-            "text": "WATER",
+            "text": ["WATER"],
             "background": "blue",
             "imports":[
                 "descalant",
@@ -54,7 +54,7 @@
         },
         {
             "name":"agriculture",
-            "text": "AGRICULTURE",
+            "text": ["AGRICULTURE"],
             "background": "blue",
             "imports":[
                 "controlled-delivery",
@@ -63,7 +63,7 @@
         },
         {
             "name":"pulp-paper",
-            "text": "&nbsp;PULP &&nbsp; PAPER",
+            "text": ["PULP &", "PAPER"],
             "background": "blue",
             "imports":[
                 "descalant"
@@ -71,7 +71,7 @@
         },
         {
             "name":"personal-care",
-            "text": "PERSONAL CARE",
+            "text": ["PERSONAL", "CARE"],
             "background": "blue",
             "imports":[
                 "antioxidant"
@@ -79,7 +79,7 @@
         },
         {
             "name":"pharmaceutical",
-            "text": "PHARMA-CEUTICAL",
+            "text": ["PHARMA-", "CEUTICAL"],
             "background": "blue",
             "imports":[
                 "controlled-delivery"
@@ -87,7 +87,7 @@
         },
         {
             "name":"food-nutrition",
-            "text": "FOOD & NUTRITION",
+            "text": ["FOOD &", "NUTRITION"],
             "background": "blue",
             "imports":[
                 "antioxidant",
@@ -97,7 +97,7 @@
         },
         {
             "name":"fabric-homecare",
-            "text": "FABRIC & HOMECARE",
+            "text": ["FABRIC &", "HOMECARE"],
             "background": "blue",
             "imports":[
                 "corrosion-inhibitor",
@@ -111,7 +111,7 @@
 
         {
             "name":"metal-ion-control",
-            "text": "METAL ION CONTROL",
+            "text": ["CONTROL","METAL ION"],
             "background": "grey",
             "imports":[
                 "fabric-homecare",
@@ -130,7 +130,7 @@
         },
         {
             "name":"acidulant",
-            "text": "ACIDULANT",
+            "text": ["ACIDULANT"],
             "background": "grey",
             "imports":[
                 "food-nutrition",
@@ -143,7 +143,7 @@
         },
         {
             "name":"acidizer",
-            "text": "ACIDIZER",
+            "text": ["ACIDIZER"],
             "background": "grey",
             "imports":[
                 "oil-gas"
@@ -155,7 +155,7 @@
         },
         {
             "name":"descalant",
-            "text": "DESCALANT ANIT-SCALANT",
+            "text": ["AGENT", "ANTI-SCALANT","DESCALANT"],
             "background": "grey",
             "imports":[
                 "fabric-homecare",
@@ -172,7 +172,7 @@
         },
         {
             "name":"agent-structurant",
-            "text": "AGENT STRUCTURANT",
+            "text": ["STRUCTURANT"],
             "background": "grey",
             "imports":[
                 "fabric-homecare"
@@ -185,7 +185,7 @@
         },
         {
             "name":"anti-redeposition",
-            "text": "ANTI- REDEPOSITION",
+            "text": [ "REDEPOSITION", "ANTI-"],
             "background": "grey",
             "imports":[
                 "fabric-homecare",
@@ -198,7 +198,7 @@
         },
         {
             "name":"antioxidant",
-            "text": "ANTIOXIDANT",
+            "text": ["ANTIOXIDANT"],
             "background": "grey",
             "imports":[
                 "food-nutrition",
@@ -210,7 +210,7 @@
         },
         {
             "name":"controlled-delivery",
-            "text": "CONTROLLED DELIVERY",
+            "text": [ "DELIVERY", "CONTROLLED"],
             "background": "grey",
             "imports":[
                 "agriculture",
@@ -223,7 +223,7 @@
         },
         {
             "name":"set-retarder",
-            "text": "SET &nbsp;RETARDER",
+            "text": ["RETARDER", "SET"],
             "background": "grey",
             "imports":[
                 "concrete-additives"
@@ -234,7 +234,7 @@
         },
         {
             "name":"plasticizer",
-            "text": "PLASTICIZER",
+            "text": ["PLASTICIZER"],
             "background": "grey",
             "imports":[
                 "concrete-additives"
@@ -245,7 +245,7 @@
         },
         {
             "name":"detergent-builder",
-            "text": "DETERGENT BUILDER",
+            "text": ["BUILDER", "DETERGENT"],
             "background": "grey",
             "imports":[
                 "industrial-institutional-cleaners",
@@ -259,7 +259,7 @@
         },
         {
             "name":"corrosion-inhibitor",
-            "text": "CORROSION INHIBITOR",
+            "text": ["INHIBITOR", "CORROSION"],
             "background": "grey",
             "imports":[
                 "oil-gas",
@@ -525,22 +525,23 @@
                 .attr("width", '100%')
                 .attr("height", '100%')
                 .attr("viewBox", -radius + " " + -radius + " 850 1000")
-                .attr("preserveAspectRatio", "xMinYMin meet");
+                .attr("preserveAspectRatio", "xMinYMin slice");
 
-        var link = svg.append("g").attr("transform", "rotate(273)").selectAll(".link"),
-            node = svg.append("g").attr("transform", "rotate(273)").selectAll(".node"),
-            tile = svg.append("g").attr('class', 'tile-container').attr("transform", "translate(" + -625/2 + "," + (radius + 75) + ")").selectAll(".tile")
-            defs = svg.append('defs');
+        var link = svg.append("svg:g").attr("transform", "rotate(273)").selectAll(".link"),
+            node = svg.append("svg:g").attr("transform", "rotate(273)").selectAll(".node"),
+            nodeText = svg.append("svg:g"),
+            tile = svg.append("svg:g").attr('class', 'tile-container').attr("transform", "translate(" + -625/2 + "," + (radius + 75) + ")").selectAll(".tile")
+            defs = svg.append("svg:defs");
 
         _.forEach(markers, function(marker){
-            defs.append('marker')
+            defs.append('svg:marker')
                 .attr('id', marker.name)
                 .attr("viewBox", "0 0 1 10")
                 .attr('markerUnits', 'strokeWidth')
                 .attr('markerHeight', marker.markerHeight)
                 .attr('refY', marker.refY)
                 .attr('orient', 'auto')
-                .append('line')
+                .append('svg:line')
                 .attr('x1', 0)
                 .attr('y1', 0)
                 .attr('x2', 0)
@@ -553,35 +554,28 @@
 
         link = link
                 .data(bundle(links))
-                .enter().append("path")
+                .enter().append("svg:path")
                 .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
                 .attr("class", "link")
                 .attr("d", line);
 
         node = node
                 .data(nodes.filter(function(n) {return !n.children; }))
-                .enter().append("g")
+                .enter().append("svg:g")
                 .attr("class", function(d) { return "node-group " + d.name; })
                 .attr("transform", function(d) { return "rotate(" + (d.x - 97) + ")translate(" + (d.y + 63) + ",0)"; })
                 
 
-        node.insert('path')
+        node.append('svg:path')
                 .attr("d","M84.276,61.439l8.281-58.25C76.556,1.044,61.212,0,45.75,0C30.64,0,15.641,0.997,0,3.043l8.094,58.253 C33,58.091,58.574,58.031,84.276,61.439z")
                 .attr("class", function(d) { return "node-shape " + d.background; })
                 .attr("transform", "rotate(97)scale(1)")
                 .on("mouseover", activateNode)
                 .on("mouseout", deactivateNode);
 
-        node.insert("foreignObject")
-                .attr("class", function(d){ return 'node-text ' + (d.x >= 180 ? 'flip': 'no-flip'); })
-                .attr('height', '45')
-                .attr('width', '75')
-                .append('xhtml:span')
-                .html(function(d) { return d.text; });
-
-        node.each(function(d){
+        node.each(function(d, index){
+            var node = d3.select(this);
             if(d.functionality){
-                var node = d3.select(this);
                 var numFunctionalities = _.size(d.functionality);
                 _.forEach(d.functionality, function(functionality, index){
                     node.append('circle')
@@ -591,6 +585,37 @@
                         .attr('class', 'circle-marker ' + functionality);
                 });
             }
+
+            var startAngle = d.x >= 180 ? 22 + (15.65 * index) : 8 + (15.65 * index);
+            var endAngle = d.x >= 180 ? startAngle - 14: startAngle + 14;
+
+            var numStrings = _.size(d.text)
+            var radiusMatrix = [
+                [335],
+                [345, 330],
+                [350, 335, 320]
+            ]
+            _.forEach(d.text, function(text, i){
+                var arc = d3.svg.arc()
+                    .innerRadius(radiusMatrix[numStrings - 1][i])
+                    .outerRadius(radiusMatrix[numStrings - 1][i])
+                    .startAngle( startAngle * (Math.PI/180)) //converting from degs to radians
+                    .endAngle( endAngle * (Math.PI/180));
+
+                nodeText.append("path")
+                   .attr("transform", "rotate(266)")
+                   .attr('id', 'textPath-' + index + i)
+                   .attr("d", arc);
+
+                nodeText.append("svg:text")
+                        .attr("class", 'node-text')
+                        .attr('dy', '4px')
+                        .append("textPath")
+                        .attr("xlink:href",function(){return "#textPath-"+index+i;})
+                        .attr("text-anchor",'middle')
+                        .attr("startOffset",'25.5%')
+                        .text(text);
+            });
         });
 
         _.forEach(arcSpecs, function(arcSpec){
@@ -600,20 +625,18 @@
                 .attr('fill', 'none')
                 .attr('id', arcSpec.id)
                 .attr("d", arcSpec.d)
-
-
                 .attr('marker-start', 'url(#' + arcSpec.markerName + ')')
                 .attr('marker-end', 'url(#' + arcSpec.markerName + ')');
 
             svg.append("text")
-              .attr('class', 'section-text')
-              .style("letter-spacing", arcSpec.letterSpacing)
-              .attr("dy", arcSpec.dy)
-              .append("textPath")
-              .attr("textLength",50)
-              .attr("xlink:href",function(){return "#"+arcSpec.id;})
-              .attr("startOffset", arcSpec.textOffset)
-              .text(arcSpec.text);
+                .attr('class', 'section-text')
+                .style("letter-spacing", arcSpec.letterSpacing)
+                .attr("dy", arcSpec.dy)
+                .append("textPath")
+                .attr("textLength",50)
+                .attr("xlink:href",function(){return "#"+arcSpec.id;})
+                .attr("startOffset", arcSpec.textOffset)
+                .text(arcSpec.text);
         });
 
         tile = tile
