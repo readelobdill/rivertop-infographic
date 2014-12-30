@@ -574,7 +574,6 @@
                 .attr("class", function(d) { return "node-group " + d.name; })
                 .attr("transform", function(d) { return "rotate(" + (d.x - 97) + ")translate(" + (d.y + 63) + ",0)"; })
                 
-
         node.append('svg:path')
                 .attr("d","M84.276,61.439l8.281-58.25C76.556,1.044,61.212,0,45.75,0C30.64,0,15.641,0.997,0,3.043l8.094,58.253 C33,58.091,58.574,58.031,84.276,61.439z")
                 .attr("class", function(d) { return "node-shape " + d.background; })
@@ -760,6 +759,7 @@
 
         var link = svg.append("g").attr("transform", "rotate(273)").selectAll(".link"),
             node = svg.append("g").attr("transform", "rotate(273)").selectAll(".node"),
+            nodeText = svg.append("svg:g"),
             tile = svg.append("g").attr('class', 'tile-container').attr("transform", "translate(" + (-550) + "," + (-150) + ")").selectAll(".tile")
             defs = svg.append('defs');
 
@@ -803,16 +803,9 @@
                 .on("mouseover", activateNode)
                 .on("mouseout", deactivateNode);
 
-        node.insert("foreignObject")
-                .attr("class", function(d){ return 'node-text ' + (d.x >= 180 ? 'flip': 'no-flip'); })
-                .attr('height', '45')
-                .attr('width', '75')
-                .append('xhtml:span')
-                .html(function(d) { return d.text; });
-
-        node.each(function(d){
+        node.each(function(d, index){
+            var node = d3.select(this);
             if(d.functionality){
-                var node = d3.select(this);
                 var numFunctionalities = _.size(d.functionality);
                 _.forEach(d.functionality, function(functionality, index){
                     node.append('circle')
@@ -822,6 +815,37 @@
                         .attr('class', 'circle-marker ' + functionality);
                 });
             }
+
+            var startAngle = d.x >= 180 ? 22 + (15.65 * index) : 8 + (15.65 * index);
+            var endAngle = d.x >= 180 ? startAngle - 14: startAngle + 14;
+
+            var numStrings = _.size(d.text)
+            var radiusMatrix = [
+                [335],
+                [345, 330],
+                [350, 335, 320]
+            ]
+            _.forEach(d.text, function(text, i){
+                var arc = d3.svg.arc()
+                    .innerRadius(radiusMatrix[numStrings - 1][i])
+                    .outerRadius(radiusMatrix[numStrings - 1][i])
+                    .startAngle( startAngle * (Math.PI/180)) //converting from degs to radians
+                    .endAngle( endAngle * (Math.PI/180));
+
+                nodeText.append("path")
+                   .attr("transform", "rotate(266)")
+                   .attr('id', 'textPath-' + index + i)
+                   .attr("d", arc);
+
+                nodeText.append("svg:text")
+                        .attr("class", 'node-text')
+                        .attr('dy', '4px')
+                        .append("textPath")
+                        .attr("xlink:href",function(){return "#textPath-"+index+i;})
+                        .attr("text-anchor",'middle')
+                        .attr("startOffset",'25.5%')
+                        .text(text);
+            });
         });
 
         _.forEach(arcSpecs, function(arcSpec){
@@ -953,6 +977,7 @@ $(document).ready(function(){
 
     var link = svg.append("g").attr("transform", "rotate(273)").selectAll(".link"),
         node = svg.append("g").attr("transform", "rotate(273)").selectAll(".node"),
+        nodeText = svg.append("svg:g"),
         tile = svg.append("g").attr('class', 'tile-container').attr("transform", "translate(" + (430) + "," + (-350) + ")").selectAll(".tile")
         defs = svg.append('defs');
 
@@ -996,16 +1021,9 @@ $(document).ready(function(){
             .on("mouseover", activateNode)
             .on("mouseout", deactivateNode);
 
-    node.insert("foreignObject")
-            .attr("class", function(d){ return 'node-text ' + (d.x >= 180 ? 'flip': 'no-flip'); })
-            .attr('height', '45')
-            .attr('width', '75')
-            .append('xhtml:span')
-            .html(function(d) { return d.text; });
-
-    node.each(function(d){
+    node.each(function(d, index){
+        var node = d3.select(this);
         if(d.functionality){
-            var node = d3.select(this);
             var numFunctionalities = _.size(d.functionality);
             _.forEach(d.functionality, function(functionality, index){
                 node.append('circle')
@@ -1015,6 +1033,37 @@ $(document).ready(function(){
                     .attr('class', 'circle-marker ' + functionality);
             });
         }
+
+        var startAngle = d.x >= 180 ? 22 + (15.65 * index) : 8 + (15.65 * index);
+        var endAngle = d.x >= 180 ? startAngle - 14: startAngle + 14;
+
+        var numStrings = _.size(d.text)
+        var radiusMatrix = [
+            [335],
+            [345, 330],
+            [350, 335, 320]
+        ]
+        _.forEach(d.text, function(text, i){
+            var arc = d3.svg.arc()
+                .innerRadius(radiusMatrix[numStrings - 1][i])
+                .outerRadius(radiusMatrix[numStrings - 1][i])
+                .startAngle( startAngle * (Math.PI/180)) //converting from degs to radians
+                .endAngle( endAngle * (Math.PI/180));
+
+            nodeText.append("path")
+               .attr("transform", "rotate(266)")
+               .attr('id', 'textPath-' + index + i)
+               .attr("d", arc);
+
+            nodeText.append("svg:text")
+                    .attr("class", 'node-text')
+                    .attr('dy', '4px')
+                    .append("textPath")
+                    .attr("xlink:href",function(){return "#textPath-"+index+i;})
+                    .attr("text-anchor",'middle')
+                    .attr("startOffset",'25.5%')
+                    .text(text);
+        });
     });
 
     _.forEach(arcSpecs, function(arcSpec){
