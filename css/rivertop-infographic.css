@@ -1,8 +1,8 @@
-#technology-infomap, #technology-infomap-legend-left{
+#technology-infomap, #technology-infomap-legend-left, #technology-infomap-legend-right{
   width: 90%;
   max-width: 1126px;
   min-width: 700px;
-  margin: 0 auto;
+  margin: 0 auto 300px auto;
 
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;

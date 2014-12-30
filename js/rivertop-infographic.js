@@ -862,4 +862,197 @@
                 .attr('x', 60)
                 .text('FUNCTIONALITY');
     });
+$(document).ready(function(){
+
+    var mouseoverTile = function (d){
+        var nodeList = [];
+        _.forEach(d.connectedTiles, function(connectedTile){
+            var node = d3.select('.' + connectedTile);
+            nodeList.push(node.data()[0]);
+        });
+        activateNode(nodeList)
+
+        d3.selectAll('.node-source path').classed(d.name, true);
+        $('.circle-marker:not(.' + d.name + ')').hide();
+    }
+
+    var mouseoutTile = function(d){
+        d3.selectAll('.node-source path').classed(d.name, false);
+
+       _.forEach(d.connectedTiles, function(connectedTile){
+            var node = d3.select('.' + connectedTile);
+            deactivateNode(node.data()[0]);
+       }); 
+
+        $('.circle-marker').show();
+    }
+
+    var activateNode = function(d) {
+        if(!_.isArray(d)){
+            d = [d];
+        }
+        link
+            .classed("link-source", function(l) { if ( _.contains(d, l.source) ) return l.target.target = true; })
+            .classed("not-connected", function(l) { if (!_.contains(d, l.source)) return l.target.target = true; });
+
+        node
+            .classed("node-source", function(n) { return _.contains(d, n); });
+    }
+
+    var deactivateNode = function(d) {
+        link
+            .classed("link-source", false)
+            .classed("not-connected", false);
+
+        node.classed("node-source", false);
+    }
+
+    var diameter = 850;
+    var radius = diameter / 2;
+    var innerRadius = radius - 120;
+
+    var cluster = d3.layout.cluster()
+            .size([360, innerRadius]);
+
+    var bundle = d3.layout.bundle();
+
+    var line = d3.svg.line.radial()
+            .interpolate("bundle")
+            .tension(.2)
+            .radius(function(d) { return d.y; })
+            .angle(function(d) { return d.x / 180 * Math.PI; });
+
+    var svg = d3.select("#technology-infomap-legend-right").append("svg")
+            .attr("width", '100%')
+            .attr("height", '100%')
+            .attr("viewBox", (-radius) + " " + -radius + " 1000 850")
+            .attr("preserveAspectRatio", "xMinYMin meet");
+
+    var link = svg.append("g").attr("transform", "rotate(273)").selectAll(".link"),
+        node = svg.append("g").attr("transform", "rotate(273)").selectAll(".node"),
+        tile = svg.append("g").attr('class', 'tile-container').attr("transform", "translate(" + (430) + "," + (-350) + ")").selectAll(".tile")
+        defs = svg.append('defs');
+
+    _.forEach(markers, function(marker){
+        defs.append('marker')
+            .attr('id', marker.name)
+            .attr("viewBox", "0 0 1 10")
+            .attr('markerUnits', 'strokeWidth')
+            .attr('markerHeight', marker.markerHeight)
+            .attr('refY', marker.refY)
+            .attr('orient', 'auto')
+            .append('line')
+            .attr('x1', 0)
+            .attr('y1', 0)
+            .attr('x2', 0)
+            .attr('y2', 10)
+            .attr('style', 'stroke:#A6A8AB;');
+    });
+
+    var nodes = cluster.nodes(packageHierarchy(classes)),
+            links = packageImports(nodes);
+
+    link = link
+            .data(bundle(links))
+            .enter().append("path")
+            .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
+            .attr("class", "link")
+            .attr("d", line);
+
+    node = node
+            .data(nodes.filter(function(n) {return !n.children; }))
+            .enter().append("g")
+            .attr("class", function(d) { return "node-group " + d.name; })
+            .attr("transform", function(d) { return "rotate(" + (d.x - 97) + ")translate(" + (d.y + 63) + ",0)"; })
+            
+
+    node.insert('path')
+            .attr("d","M84.276,61.439l8.281-58.25C76.556,1.044,61.212,0,45.75,0C30.64,0,15.641,0.997,0,3.043l8.094,58.253 C33,58.091,58.574,58.031,84.276,61.439z")
+            .attr("class", function(d) { return "node-shape " + d.background; })
+            .attr("transform", "rotate(97)scale(1)")
+            .on("mouseover", activateNode)
+            .on("mouseout", deactivateNode);
+
+    node.insert("foreignObject")
+            .attr("class", function(d){ return 'node-text ' + (d.x >= 180 ? 'flip': 'no-flip'); })
+            .attr('height', '45')
+            .attr('width', '75')
+            .append('xhtml:span')
+            .html(function(d) { return d.text; });
+
+    node.each(function(d){
+        if(d.functionality){
+            var node = d3.select(this);
+            var numFunctionalities = _.size(d.functionality);
+            _.forEach(d.functionality, function(functionality, index){
+                node.append('circle')
+                    .attr("cx", 35 - index * 2.5)
+                    .attr("cy", 60 - (numFunctionalities * 10) + index * 20)
+                    .attr("r", 5)
+                    .attr('class', 'circle-marker ' + functionality);
+            });
+        }
+    });
+
+    _.forEach(arcSpecs, function(arcSpec){
+        svg.append("path")
+            .attr('stroke-width', '1')
+            .attr('stroke', '#A6A8AB')
+            .attr('fill', 'none')
+            .attr('id', arcSpec.id)
+            .attr("d", arcSpec.d)
+
+
+            .attr('marker-start', 'url(#' + arcSpec.markerName + ')')
+            .attr('marker-end', 'url(#' + arcSpec.markerName + ')');
+
+        svg.append("text")
+          .attr('class', 'section-text')
+          .style("letter-spacing", arcSpec.letterSpacing)
+          .attr("dy", arcSpec.dy)
+          .append("textPath")
+          .attr("textLength",50)
+          .attr("xlink:href",function(){return "#"+arcSpec.id;})
+          .attr("startOffset", arcSpec.textOffset)
+          .text(arcSpec.text);
+    });
+
+    tile = tile
+            .data(functionalityTiles)
+            .enter().append("g")
+            .attr('class', 'tile-group')
+            .attr("transform", function(d){ return  "translate(0," + d.position + ")";})
+            .on("mouseover", mouseoverTile)
+            .on("mouseout", mouseoutTile);
+
+        tile.insert('rect')
+            .attr("width", 120)
+            .attr("height", 20)
+            .attr("rx", 10)
+            .attr("ry", 10)
+            .attr("class", function(d) { return d.name; })
+
+            
+        tile.insert('text')
+            .attr('class', 'tile-text')
+            .attr("dy", "1.2em")
+            .attr('x', 60)
+            .text(function(d){return d.text;});
+
+        svg.select('.tile-container')
+            .append('line')
+            .attr('class', 'functionality-line')
+            .attr("x1", -10)
+            .attr("y1", -15)
+            .attr("x2", 130)
+            .attr("y2", -15)
+            .attr('marker-end', 'url(#functionality-bookend)')
+            .attr('marker-start', 'url(#functionality-bookend)');
+
+        svg.select('.tile-container').append('text')
+            .attr('class', 'functionality-title')
+            .attr('dy', '-2em')
+            .attr('x', 60)
+            .text('FUNCTIONALITY');
+});
 })();
