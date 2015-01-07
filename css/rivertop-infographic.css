@@ -66,6 +66,10 @@
   pointer-events: none;
 }
 
+.circle-marker.fade{
+  opacity: 0.3;
+}
+
 .functionality-line{
   stroke-width: 1pt;
   stroke: #A6A8AB;
@@ -90,6 +94,7 @@
 .barrier{fill:#C2C2C2 !important;}
 .adhesion{fill:#454545 !important;}
 .permeation{fill:#D6BDA0 !important;}
+.adsorption{fill:#9476FF !important;}
 .flavor-modification{fill:#29CCCF !important;}
 .preservation{fill:#D9CA00 !important;}
 
