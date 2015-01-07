@@ -570,7 +570,6 @@
                 .attr("width", '100%')
                 .attr("height", '100%')
                 .attr("viewBox", -radius + " " + -radius + " 1000 850")
-                .attr("transform", "rotate(100)")
                 .attr("preserveAspectRatio", "xMinYMin slice");
 
         var link = svg.append("svg:g").attr("transform", "rotate(270)").selectAll(".link"),
