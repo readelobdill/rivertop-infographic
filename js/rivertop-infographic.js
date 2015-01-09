@@ -7,7 +7,7 @@
             "imports":[
                 "corrosion-inhibitor",
                 "descalant",
-                "acidizer",
+                "super-absorbant",
                 "acidulant",
                 "metal-ion-control"
             ]
@@ -44,8 +44,8 @@
             ]
         },
         {
-            "name":"water",
-            "text": ["WATER"],
+            "name":"water-treatment",
+            "text": ["WATER", "TREATMENT"],
             "background": "blue",
             "imports":[
                 "descalant",
@@ -103,7 +103,7 @@
                 "corrosion-inhibitor",
                 "detergent-builder",
                 "anti-redeposition",
-                "agent-structurant",
+                "structurant",
                 "descalant"
             ]
         },
@@ -126,10 +126,12 @@
                 "food-nutrition",
                 "agriculture",
                 "concrete-additives",
-                "water",
+                "water-treatment",
                 "industrial-institutional-cleaners",
                 "oil-gas",
-                "paper-products"
+                "paper-products",
+                "personal-care",
+                "pulp-paper"
             ],
             "functionality":[
                 "preservation",
@@ -151,15 +153,16 @@
             ]
         },
         {
-            "name":"acidizer",
-            "text": ["ACIDIZER"],
+            "name":"super-absorbant",
+            "text": ["ABSORBANT", "SUPER"],
             "background": "grey",
             "imports":[
-                "oil-gas"
+                "paper-products",
+                "personal-care",
+                "agriculture"
             ],
             "functionality":[
-                "ph-modification",
-                "chelation"
+                "absorption"
             ]
         },
         {
@@ -169,7 +172,7 @@
             "imports":[
                 "fabric-homecare",
                 "pulp-paper",
-                "water",
+                "water-treatment",
                 "industrial-institutional-cleaners",
                 "oil-gas"
             ],
@@ -180,14 +183,14 @@
             ]
         },
         {
-            "name":"agent-structurant",
+            "name":"structurant",
             "text": ["STRUCTURANT"],
             "background": "grey",
             "imports":[
-                "fabric-homecare"
+                "fabric-homecare",
+                "personal-care"
             ],
             "functionality":[
-                "absorption",
                 "adhesion",
                 "dispertion",
                 "adsorption"
@@ -202,7 +205,6 @@
                 "industrial-institutional-cleaners"
             ],
             "functionality":[
-                "absorption",
                 "dispertion",
                 "adsorption"
             ]
@@ -276,12 +278,15 @@
                 "oil-gas",
                 "concrete-additives",
                 "road-safety",
-                "fabric-homecare"
+                "fabric-homecare",
+                "industrial-institutional-cleaners",
+                "water-treatment",
+                "pulp-paper"
             ],
             "functionality":[
                 "barrier",
                 "preservation",
-                "absorption",
+                "adsorption",
                 "chelation"
             ]
         }
@@ -316,7 +321,7 @@
                 'detergent-builder',
                 'set-retarder',
                 'metal-ion-control',
-                'acidizer',
+                'super-absorbant',
                 'descalant'
             ]
         },
@@ -328,7 +333,7 @@
             connectedTiles: [
                 'detergent-builder',
                 'descalant',
-                'acidizer',
+                'super-absorbant',
                 'acidulant'
             ]
         },
@@ -339,7 +344,7 @@
             position: '70',
             connectedTiles: [
                 'anti-redeposition',
-                'agent-structurant',
+                'structurant',
                 'descalant',
                 'plasticizer',
                 'detergent-builder',
@@ -354,7 +359,7 @@
             connectedTiles: [
                 'corrosion-inhibitor',
                 'anti-redeposition',
-                'agent-structurant'
+                'structurant'
             ]
         },
         {
@@ -373,7 +378,7 @@
             index: 5,
             position: '175',
             connectedTiles: [
-                'agent-structurant'
+                'structurant'
             ]
         },
         {
@@ -392,7 +397,7 @@
             position: '245',
             connectedTiles: [
                 'anti-redeposition',
-                'agent-structurant'
+                'structurant'
             ]
         },
         {
@@ -498,13 +503,17 @@
 
         var mouseoverDot = function(d){
             var tile = d3.select('.tile-group.' + $(this).data('name'));
-            $('.tile-group:not(.' + $(this).data('name') + ')').hide();
+            d3.selectAll('.tile-group:not(.' + $(this).data('name') + ')').classed('fade', true);
             mouseoverTile(tile.data()[0]);
+
+            if(tile.data()[0].name === "flavor-modification"){
+                d3.selectAll('.target-oil-gas').classed('not-connected', true)
+            }
         }
 
         var mouseoutDot = function(d){
             var tile = d3.select('.tile-group.' + $(this).data('name'));
-            $('.tile-group').show();
+            d3.selectAll('.tile-group').classed('fade', false);
             mouseoutTile(tile.data()[0]);
         }
 
@@ -601,7 +610,7 @@
                 .data(bundle(links))
                 .enter().append("svg:path")
                 .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
-                .attr("class", "link")
+                .attr("class", function(d) {return "link target-" + d.target.name; })
                 .attr("d", line);
 
         node = node

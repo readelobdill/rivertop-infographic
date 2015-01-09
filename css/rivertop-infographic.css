@@ -35,6 +35,11 @@
   cursor: pointer;
 }
 
+.tile-group.fade{
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+
 .tile-text{
   font: 11.5px rajdhani-bold, Helvetica, Arial, sans-serif;
   fill: #FFFFFF;
