@@ -321,7 +321,6 @@
                 'detergent-builder',
                 'set-retarder',
                 'metal-ion-control',
-                'super-absorbant',
                 'descalant'
             ]
         },
@@ -333,7 +332,6 @@
             connectedTiles: [
                 'detergent-builder',
                 'descalant',
-                'super-absorbant',
                 'acidulant'
             ]
         },
@@ -357,9 +355,7 @@
             index: 3,
             position: '105',
             connectedTiles: [
-                'corrosion-inhibitor',
-                'anti-redeposition',
-                'structurant'
+                'super-absorbant'
             ]
         },
         {
@@ -397,7 +393,8 @@
             position: '245',
             connectedTiles: [
                 'anti-redeposition',
-                'structurant'
+                'structurant',
+                'corrosion-inhibitor'
             ]
         },
         {
@@ -506,9 +503,9 @@
             d3.selectAll('.tile-group:not(.' + $(this).data('name') + ')').classed('fade', true);
             mouseoverTile(tile.data()[0]);
 
-            if(tile.data()[0].name === "flavor-modification"){
-                d3.selectAll('.target-oil-gas').classed('not-connected', true)
-            }
+            // if(tile.data()[0].name === "flavor-modification"){
+            //     d3.selectAll('.target-oil-gas').classed('not-connected', true)
+            // }
         }
 
         var mouseoutDot = function(d){
