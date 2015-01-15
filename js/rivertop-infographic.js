@@ -74,7 +74,8 @@
             "text": ["PERSONAL", "CARE"],
             "background": "blue",
             "imports":[
-                "antioxidant"
+                "antioxidant",
+                "metal-ion-control"
             ]
         },
         {
