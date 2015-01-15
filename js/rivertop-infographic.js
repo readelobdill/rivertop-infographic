@@ -503,10 +503,6 @@
             var tile = d3.select('.tile-group.' + $(this).data('name'));
             d3.selectAll('.tile-group:not(.' + $(this).data('name') + ')').classed('fade', true);
             mouseoverTile(tile.data()[0]);
-
-            // if(tile.data()[0].name === "flavor-modification"){
-            //     d3.selectAll('.target-oil-gas').classed('not-connected', true)
-            // }
         }
 
         var mouseoutDot = function(d){
@@ -525,6 +521,9 @@
 
             d3.selectAll('.node-source path').classed(d.name, true);
             $('.circle-marker:not(.' + d.name + ')').hide();
+            if(d.name === "flavor-modification"){
+                d3.selectAll('.target-oil-gas').classed('not-connected', true)
+            }
         }
 
         var mouseoutTile = function(d){
