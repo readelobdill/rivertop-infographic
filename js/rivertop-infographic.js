@@ -329,7 +329,7 @@
             name: 'ph-modification',
             text: 'pH MODIFICATION',
             index: 1,
-            position: '8.33, 35',
+            position: '8.33, 40',
             connectedTiles: [
                 'detergent-builder',
                 'descalant',
@@ -340,7 +340,7 @@
             name: 'dispertion',
             text: 'DISPERTION',
             index: 2,
-            position: '8.33, 70',
+            position: '8.33, 80',
             connectedTiles: [
                 'anti-redeposition',
                 'structurant',
@@ -354,7 +354,7 @@
             name: 'absorption',
             text: 'ABSORPTION',
             index: 3,
-            position: '8.33, 105',
+            position: '8.33, 120',
             connectedTiles: [
                 'super-absorbant'
             ]
@@ -363,7 +363,7 @@
             name: 'barrier',
             text: 'BARRIER',
             index: 4,
-            position: '8.33, 140',
+            position: '8.33, 160',
             connectedTiles: [
                 'corrosion-inhibitor',
                 'controlled-delivery'
@@ -382,7 +382,7 @@
             name: 'permeation',
             text: 'PERMEATION',
             index: 6,
-            position: '166.66, 35',
+            position: '166.66, 40',
             connectedTiles: [
                 'controlled-delivery'
             ]
@@ -391,7 +391,7 @@
             name: 'adsorption',
             text: 'ADSORPTION',
             index: 7,
-            position: '166.66, 70',
+            position: '166.66, 80',
             connectedTiles: [
                 'anti-redeposition',
                 'structurant',
@@ -402,7 +402,7 @@
             name: 'flavor-modification',
             text: 'FLAVOR MODIFICATION',
             index: 8,
-            position: '166.66, 105',
+            position: '166.66, 120',
             connectedTiles: [
                 'acidulant'
             ]
@@ -411,7 +411,7 @@
             name: 'preservation',
             text: 'PRESERVATION',
             index: 9,
-            position: '166.66, 140',
+            position: '166.66, 160',
             connectedTiles: [
                 'corrosion-inhibitor',
                 'antioxidant',
@@ -596,8 +596,8 @@
         var link = svg.append("svg:g").attr("transform", "rotate(270)").selectAll(".link"),
             node = svg.append("svg:g").attr("transform", "rotate(270)").selectAll(".node"),
             nodeText = svg.append("svg:g"),
-            technologyText = svg.append("svg:foreignObject").attr('height', 215).attr('width', 335).attr('class', 'tech-text-container').attr("transform", "translate(-770,-340)").selectAll('.tech-text'),
-            tile = svg.append("svg:g").attr('class', 'tile-container').attr("transform", "translate(-760,-50)").selectAll(".tile")
+            technologyText = svg.append("svg:foreignObject").attr('height', 215).attr('width', 335).attr('class', 'tech-text-container').attr("transform", "translate(-770,-340)scale(.95)").selectAll('.tech-text'),
+            tile = svg.append("svg:g").attr('class', 'tile-container').attr("transform", "translate(-760,-50)scale(.95)").selectAll(".tile")
             defs = svg.append("svg:defs");
 
         _.forEach(markers, function(marker){
