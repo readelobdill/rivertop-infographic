@@ -316,7 +316,7 @@
             name: 'chelation',
             text: 'CHELATION',
             index: 0,
-            position: '0, 0',
+            position: '8.33, 0',
             connectedTiles: [
                 'corrosion-inhibitor',
                 'detergent-builder',
@@ -329,7 +329,7 @@
             name: 'ph-modification',
             text: 'pH MODIFICATION',
             index: 1,
-            position: '0, 35',
+            position: '8.33, 35',
             connectedTiles: [
                 'detergent-builder',
                 'descalant',
@@ -340,7 +340,7 @@
             name: 'dispertion',
             text: 'DISPERTION',
             index: 2,
-            position: '0, 70',
+            position: '8.33, 70',
             connectedTiles: [
                 'anti-redeposition',
                 'structurant',
@@ -354,7 +354,7 @@
             name: 'absorption',
             text: 'ABSORPTION',
             index: 3,
-            position: '0, 105',
+            position: '8.33, 105',
             connectedTiles: [
                 'super-absorbant'
             ]
@@ -363,7 +363,7 @@
             name: 'barrier',
             text: 'BARRIER',
             index: 4,
-            position: '0, 140',
+            position: '8.33, 140',
             connectedTiles: [
                 'corrosion-inhibitor',
                 'controlled-delivery'
@@ -373,7 +373,7 @@
             name: 'adhesion',
             text: 'ADHESION',
             index: 5,
-            position: '130, 0',
+            position: '166.66, 0',
             connectedTiles: [
                 'structurant'
             ]
@@ -382,7 +382,7 @@
             name: 'permeation',
             text: 'PERMEATION',
             index: 6,
-            position: '130, 35',
+            position: '166.66, 35',
             connectedTiles: [
                 'controlled-delivery'
             ]
@@ -391,7 +391,7 @@
             name: 'adsorption',
             text: 'ADSORPTION',
             index: 7,
-            position: '130, 70',
+            position: '166.66, 70',
             connectedTiles: [
                 'anti-redeposition',
                 'structurant',
@@ -402,7 +402,7 @@
             name: 'flavor-modification',
             text: 'FLAVOR MODIFICATION',
             index: 8,
-            position: '130, 105',
+            position: '166.66, 105',
             connectedTiles: [
                 'acidulant'
             ]
@@ -411,7 +411,7 @@
             name: 'preservation',
             text: 'PRESERVATION',
             index: 9,
-            position: '130, 140',
+            position: '166.66, 140',
             connectedTiles: [
                 'corrosion-inhibitor',
                 'antioxidant',
@@ -450,6 +450,21 @@
             //-89.5deg to 14.5deg 
             d: "M-390.985111918091,-3.4120753798642953A391,391 0 0,1 97.8985815852866,-378.54572738784015",
             markerName: 'section-bookend'
+        }
+    ];
+
+    var technologyTexts = [
+        {
+            text: 'TECHNOLOGY PLATFORM',
+            name: 'technology-text-title'
+        },
+        {
+            text: 'Our renewable <em>Novel Chemistry™</em> enables endless application options with the added benefit of embedded sustainability and cost efficiency.',
+            name: 'technology-text-renewable'
+        },
+        {
+            text: '<a href="http://www.rivertop.com/contact.php/" target="_blank">Contact us</a> to explore together how we can fulfill unmet market needs.',
+            name: 'technology-text-contact'
         }
     ];
 
@@ -575,13 +590,14 @@
         var svg = d3.select("#technology-infomap").append("svg")
                 .attr("width", '100%')
                 .attr("height", '100%')
-                .attr("viewBox", (-radius - 300) + " " + -radius + " 1150 850")
+                .attr("viewBox", (-radius - 350) + " " + -radius + " 1200 850")
                 .attr("preserveAspectRatio", "xMinYMin slice");
 
         var link = svg.append("svg:g").attr("transform", "rotate(270)").selectAll(".link"),
             node = svg.append("svg:g").attr("transform", "rotate(270)").selectAll(".node"),
             nodeText = svg.append("svg:g"),
-            tile = svg.append("svg:g").attr('class', 'tile-container').attr("transform", "translate(" + (-700) + "," + (-50) + ")").selectAll(".tile")
+            technologyText = svg.append("svg:foreignObject").attr('height', 215).attr('width', 335).attr('class', 'tech-text-container').attr("transform", "translate(-770,-340)").selectAll('.tech-text'),
+            tile = svg.append("svg:g").attr('class', 'tile-container').attr("transform", "translate(-760,-50)").selectAll(".tile")
             defs = svg.append("svg:defs");
 
         _.forEach(markers, function(marker){
@@ -694,13 +710,21 @@
                 .text(arcSpec.text);
         });
 
+        technologyText = technologyText
+                .attr('height', 300)
+                .attr('width', 300)
+                .attr('x', 0)
+                .attr('y', 0)
+                .data(technologyTexts)
+                .enter().append("xhtml:p")
+                .attr('class', function(d){return d.name;})
+                .html(function(d){return d.text;});
 
         tile = tile
                 .attr('height', 300)
                 .attr('width', 300)
                 .attr('x', 0)
                 .attr('y', 0)
-                .attr('fill', 'purple')
                 .data(functionalityTiles)
                 .enter().append("svg:g")
                 .attr("class", function(d) { return "tile-group " + d.name; })
@@ -709,17 +733,17 @@
                 .on("mouseout", mouseoutTile);
 
             tile.append('svg:rect')
-                .attr("width", 120)
-                .attr("height", 20)
-                .attr("rx", 10)
-                .attr("ry", 10)
+                .attr("width", 140)
+                .attr("height", 25)
+                .attr("rx", 12.5)
+                .attr("ry", 12.5)
                 .attr("class", function(d) { return d.name; })
 
                 
             tile.append('svg:text')
                 .attr('class', 'tile-text')
-                .attr("dy", "1.2em")
-                .attr('x', 60)
+                .attr("dy", "1.25em")
+                .attr('x', 70)
                 .text(function(d){return d.text;});
 
             svg.select('.tile-container')
@@ -727,7 +751,7 @@
                 .attr('class', 'functionality-line')
                 .attr("x1", -10)
                 .attr("y1", -15)
-                .attr("x2", 260)
+                .attr("x2", 325)
                 .attr("y2", -15)
                 .attr('marker-end', 'url(#functionality-bookend)')
                 .attr('marker-start', 'url(#functionality-bookend)');
@@ -736,7 +760,7 @@
                 .append('svg:text')
                 .attr('class', 'functionality-title')
                 .attr('dy', '-2em')
-                .attr('x', 130)
+                .attr('x', 165)
                 .text('FUNCTIONALITY');
     });
 })();
