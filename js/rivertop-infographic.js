@@ -596,8 +596,13 @@
         var link = svg.append("svg:g").attr("transform", "rotate(270)").selectAll(".link"),
             node = svg.append("svg:g").attr("transform", "rotate(270)").selectAll(".node"),
             nodeText = svg.append("svg:g"),
-            technologyText = svg.append("svg:foreignObject").attr('height', 215).attr('width', 335).attr('class', 'tech-text-container').attr("transform", "translate(-770,-340)scale(.95)").selectAll('.tech-text'),
-            tile = svg.append("svg:g").attr('class', 'tile-container').attr("transform", "translate(-760,-50)scale(.95)").selectAll(".tile")
+            technologyText = svg.append("svg:foreignObject")
+                                .attr('height', 215)
+                                .attr('width', 335)
+                                .attr('class', 'tech-text-container')
+                                .attr("transform", "translate(-770,-340)scale(.95)")
+                                .selectAll('.tech-text'),
+            tile = svg.append("svg:g").attr('class', 'tile-container').attr("transform", "translate(-760,-50)scale(.9)").selectAll(".tile")
             defs = svg.append("svg:defs");
 
         _.forEach(markers, function(marker){
